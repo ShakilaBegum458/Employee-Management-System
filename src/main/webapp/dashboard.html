@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" id="html-root">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EMS — DashBoard</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="dashboard-page">
+  <aside class="sidebar">
+   <div class="sidebar-brand">
+  <div class="brand-logo-sm">EMS</div>
+  <span>Employee MS</span>
+  <button class="btn-dark-toggle"
+          onclick="toggleDarkMode()"
+          id="dark-toggle"
+          title="Toggle Dark Mode">
+    🌙
+  </button>
+</div>
+    <nav class="sidebar-nav">
+      <a href="dashboard.html" class="nav-link active">
+        📋 All Employees
+      </a>
+      <a href="add-employee.html" class="nav-link">
+        ➕ Add Employee
+      </a>
+    </nav>
+    <div class="sidebar-footer">
+      <!-- Dark Mode Toggle -->
+      <button class="btn btn-ghost btn-full"
+              onclick="logout()">
+        🚪 Logout
+      </button>
+    </div>
+  </aside>
+  <main class="main-content">
+    <header class="page-header">
+      <div>
+        <h2>Employee Directory</h2>
+        <p class="subtitle" id="record-count">Loading...</p>
+      </div>
+      <div class="header-actions">
+        <!-- Export Buttons -->
+        <button class="btn btn-success"
+                onclick="exportCSV()">
+          📥 Export CSV
+        </button>
+        <button class="btn btn-warning"
+                onclick="exportPDF()">
+          📄 Export PDF
+        </button>
+        <button class="btn btn-danger"
+                onclick="confirmDeleteAll()">
+          🗑 Delete All
+        </button>
+      </div>
+    </header>
+
+  
+    <div id="toast" class="toast hidden"></div>
+
+
+    <div class="search-bar">
+      <span class="search-icon">🔍</span>
+      <input type="text"
+             id="search-input"
+             placeholder="Search by ID, Name or DOB..."
+             oninput="handleSearch(this.value)" />
+    </div> 
+    <div class="table-wrapper">
+      <table id="emp-table">
+        <thead>
+          <tr>
+            <th>Employee ID</th>
+            <th>Name</th>
+            <th>DOB</th>
+            <th>Department</th>
+            <th>Designation</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="emp-body">
+          <tr>
+            <td colspan="8" class="loading-row">
+              Loading employees...
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+   
+    <div class="pagination" id="pagination"></div>
+
+  </main>
+
+
+  <div class="modal-overlay hidden" id="delete-all-modal">
+    <div class="modal">
+      <h3>⚠️ Delete All Employees?</h3>
+      <p>This action is <strong>permanent</strong>
+         and cannot be undone.</p>
+      <div class="modal-actions">
+        <button class="btn btn-ghost"
+                onclick="closeModal()">Cancel</button>
+        <button class="btn btn-danger"
+                onclick="executeDeleteAll()">
+          Yes, Delete All
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal-overlay hidden" id="delete-one-modal">
+    <div class="modal">
+      <h3>Delete Employee?</h3>
+      <p>Are you sure you want to delete
+         <strong id="delete-emp-id"></strong>?</p>
+      <div class="modal-actions">
+        <button class="btn btn-ghost"
+                onclick="closeModal()">Cancel</button>
+        <button class="btn btn-danger"
+                onclick="executeDeleteOne()">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/employee.js"></script>
+  <script src="js/darkmode.js"></script>
+</body>
+</html>
