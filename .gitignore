@@ -1,0 +1,14 @@
+.class
+.jar
+.war
+.ear
+.classpath
+.project
+.settings/
+bin/
+build/
+target/
+.DS_Store
+Thumbs.db
+.log
+!src/main/webapp/WEB-INF/lib/*.jar
