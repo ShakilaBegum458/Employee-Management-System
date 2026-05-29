@@ -6,18 +6,18 @@ import java.sql.DriverManager;
 public class DBConnection {
 
     private static final String URL =
-        "jdbc:mysql://localhost:3306/ems_db" +
-        "?useSSL=false&serverTimezone=UTC" +
+        "jdbc:mysql://mysql-xxx.aivencloud.com:3306/defaultdb" +
+        "?useSSL=true" +
+        "&serverTimezone=UTC" +
         "&allowPublicKeyRetrieval=true";
 
-    private static final String USER = "root";
-    private static final String PASS = "Shakila@2005"; 
+    private static final String USER = "avnadmin";
+    private static final String PASS = "AVNS_20M5K8GLGCWtrj46qiR";
 
-    public static Connection getConnection() throws Exception {
+    public static Connection getConnection()
+            throws Exception {
         Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection conn = DriverManager.getConnection(
+        return DriverManager.getConnection(
                 URL, USER, PASS);
-        System.out.println("DB Connection successful!");
-        return conn;
     }
 }
