@@ -74,11 +74,11 @@ Place in WEB-INF/lib/:
 1. Import in Eclipse
 2. Add Tomcat 9 server
 3. Run on Server
-4. Open https://ems-app-z19k.onrender.com
+4. Open https://ems-71f9.onrender.com
 
 # Login Credentials
-- Username: user
-- Password: shaki@123
+- Username: admin
+- Password: admin123
 
 # API Endpoints
 | Method | URL | Description |
