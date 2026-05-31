@@ -1,0 +1,56 @@
+package com.company.ems;
+
+import org.apache.catalina.startup.Tomcat;
+import org.apache.catalina.WebResourceRoot;
+import org.apache.catalina.webresources.DirResourceSet;
+import org.apache.catalina.webresources.StandardRoot;
+import javax.servlet.ServletException;
+import java.io.File;
+
+public class Main {
+
+    public static void main(String[] args)
+            throws Exception {
+
+        // Get port from environment variable
+        String portStr =
+            System.getenv("PORT");
+        int port = portStr != null ?
+            Integer.parseInt(portStr) : 8080;
+
+        Tomcat tomcat = new Tomcat();
+        tomcat.setPort(port);
+        tomcat.getConnector();
+
+        // Set webapp directory
+        String webappDir =
+            new File("src/main/webapp")
+                .getAbsolutePath();
+
+        org.apache.catalina.Context ctx =
+            tomcat.addWebapp(
+                "", webappDir);
+
+        // Add classes directory
+        File additionWebInfClasses =
+            new File("target/classes");
+
+        WebResourceRoot resources =
+            new StandardRoot(ctx);
+
+        resources.addPreResources(
+            new DirResourceSet(
+                resources,
+                "/WEB-INF/classes",
+                additionWebInfClasses
+                    .getAbsolutePath(),
+                "/"));
+
+        ctx.setResources(resources);
+
+        tomcat.start();
+        System.out.println(
+            "Server started on port: " + port);
+        tomcat.getServer().await();
+    }
+}
