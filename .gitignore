@@ -1,14 +1,19 @@
-.class
-.jar
-.war
-.ear
+# Eclipse files - DO NOT UPLOAD
+.settings/
 .classpath
 .project
-.settings/
 bin/
 build/
+
+# Maven
 target/
+
+# OS files
 .DS_Store
 Thumbs.db
-.log
+
+# Logs
+*.log
+
+# Keep JARs
 !src/main/webapp/WEB-INF/lib/*.jar
